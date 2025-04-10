@@ -1,0 +1,880 @@
+Basic CSS Questions :
+=====================
+
+1. What is CSS, and why is it used?
+What is CSS?
+CSS (Cascading Style Sheets) is a stylesheet language used to define the presentation and layout of HTML documents. It controls how web pages look, including elements like colors, fonts, spacing, positioning, and responsiveness.
+
+Why is CSS Used?
+Improves Appearance – Makes web pages visually appealing by adding styles.
+Separation of Content & Design – Keeps HTML for structure and CSS for styling, making code cleaner.
+Enhances User Experience – Allows for smooth animations, transitions, and responsive designs.
+Responsive Design – Adapts websites to different screen sizes (mobiles, tablets, desktops).
+Faster Page Load – Reduces the need for inline styles and improves page performance.
+Reusability & Maintainability – One CSS file can style multiple HTML pages, making it easier to update.
+
+2. What are the different types of CSS? (Inline, Internal, External)?
+Types of CSS
+CSS can be applied to an HTML document in three different ways:
+
+i. Inline CSS
+   ----------
+   Applied directly to an HTML element using the style attribute.
+   Useful for quick fixes or styling a single element.
+   Not recommended for large-scale projects as it reduces maintainability.
+   
+   =>Example:    <p style="color: blue; font-size: 18px;">This is an inline CSS example.</p>
+
+ii. Internal CSS (Embedded CSS)
+    ---------------------------
+   Defined inside a <style> tag within the <head> section of an HTML document.
+   Useful when applying styles to a single HTML page.
+   Not reusable across multiple pages.
+
+   =>Example:
+   <!DOCTYPE html>
+   <html>
+   <head>
+    <style>
+        p {
+            color: green;
+            font-size: 20px;
+        }
+    </style>
+   </head>
+      <body>
+          <p>This is an internal CSS example.</p>
+      </body>
+   </html>
+
+iii. External CSS
+     ------------
+     Written in a separate .css file and linked to the HTML file using <link>.
+     Best for large projects as it promotes code reusability and maintainability.
+     Improves website performance by allowing browsers to cache stylesheets.
+     => Example :
+		<!DOCTYPE html>
+			<html>
+				<head>
+    					<link rel="stylesheet" type="text/css" href="styles.css">
+				</head>
+			<body>
+    					<p>This is an external CSS example.</p>
+			</body>
+			</html>
+3. What is the difference between relative, absolute, fixed, and sticky positioning in CSS?
+i>   Relative Positioning (position: relative;):
+     -------------------------------------------
+     The element is positioned relative to its normal position.
+     It does not affect other elements’ positions.
+     You can move it using top, right, bottom, and left.
+
+ii>   Absolute Positioning (position: absolute;):
+      -------------------------------------------	
+      The element is removed from the normal document flow.
+      It is positioned relative to the nearest positioned ancestor (relative, absolute, fixed, or sticky).
+      If no positioned ancestor is found, it is placed relative to the <html> (entire page).
+
+iii>  Fixed Positioning (position: fixed;):
+      -------------------------------------
+      The element is removed from the normal document flow.
+      It is always positioned relative to the viewport (browser window).
+      It does not move when scrolling.
+
+4. Explain the difference between class and ID selectors in CSS?
+
+Class Selectors(.) => CSS class selector selects the HTML elements by their class. The class attribute of HTML elements used to assign an id to 		      the HTML element.The class name of HTML element always written with the (.) character.
+ID Selector (#)    => CSS Id selector selects the HTML elements by their id. Id attribute used to assign an id to HTML element. The id of every                 	              HTML element must unique. So the Id selector used when we want to apply style on the unique HTML element.The Id name of an 		      HTML element always written with the (#) character.
+
+5. What is the z-index in CSS, and how does it work?
+The z-index property is used to displace elements on the z-axis i.e in or out of the screen. It is used to define the order of elements if they overlap on each other.
+
+Syntax:
+
+z-index: auto|number|initial|inherit;
+Property values:
+
+auto: The stack order is equal to that of the parent(default).
+number: The stack order depends in the number.
+initial: Sets the property to its default value.
+inherit: Inherits the property from the parent element.
+
+=>Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container {
+  position: relative;
+}
+
+.black-box {
+  position: relative;
+  z-index: 1;
+  border: 2px solid black;
+  height: 100px;
+  margin: 30px;
+}
+
+.gray-box {
+  position: absolute;
+  z-index: 3; /* gray box will be above both green and black box */
+  background: lightgray;
+  height: 60px;  
+  width: 70%;
+  left: 50px;
+  top: 50px;
+}
+
+.green-box {
+  position: absolute;
+  z-index: 2; /* green box will be above black box */
+  background: lightgreen;
+  width: 35%;
+  left: 270px;
+  top: -15px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+
+<h1>Z-index Example</h1>
+
+<p>An element with greater stack order is always above an element with a lower stack order.</p>
+
+<div class="container">
+  <div class="black-box">Black box (z-index: 1)</div>
+  <div class="gray-box">Gray box (z-index: 3)</div>
+  <div class="green-box">Green box (z-index: 2)</div>
+</div>
+
+</body>
+</html>
+
+6. What are pseudo-classes and pseudo-elements? Provide examples?
+Pseudo-Classes (:)=> A pseudo-class is a selector that selects elements that are in a specific state, e.g. they are the first element of their                   	             type, or they are being hovered over by the mouse pointer. They tend to act as if you had applied a class to some part of 			     your document, often helping you cut down on excess classes in your markup, and giving you more flexible, maintainable                    	             code.
+
+		     Pseudo-classes are keywords that start with a colon. For example, :hover is a pseudo-class.
+			button:hover 
+			{
+    			background-color: blue;
+    			color: white;
+			}
+Pseudo-Elements (::)=> Pseudo-elements behave in a similar way. However, they act as if you had added a whole new HTML element into the markup,   		       rather than applying a class to existing elements.
+
+		       Pseudo-elements start with a double colon ::. ::before is an example of a pseudo-element.
+		       h1::before {
+    		       content: "🔥 ";
+                       color: orange;
+                       }
+
+7. What is the difference between em, rem, px, and % in CSS?
+
+i) Percentage (%)  => The percentage unit is used to set values relative to the current font-size or the size of the parent element. This unit is highly flexible and allows for responsive             	             design adjustments.
+		     Example: Setting the font-size relative to the current font-size.
+		     	font-size: 150%;
+ii) em            => The em unit is relative to the font-size of the element it is used on. For example, 2em means two times the size of the current font.
+		     Example: Setting the font-size relative to the current font-size.
+			font-size: 2em;
+iii) rem          => The rem unit is relative to the root element (usually the <html> element) font-size, making it consistent across the entire document.
+		     Example: Setting the font-size relative to the browser base font-size.
+			font-size: 1.5rem;
+iv) Pixles(px)    => The pixel unit is an absolute unit used to define sizes in terms of pixels. It ensures consistent size across different screens.
+		     Example: Setting the font-size in pixels.
+			font-size: 16px;
+8. How can you apply a style to multiple elements in CSS?
+1. Using a Comma-Separated List
+h1, h2, p {
+    color: blue;
+    font-family: Arial, sans-serif;
+}
+
+2.Using a Class
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+<p class="highlight">This is a highlighted paragraph.</p>
+<span class="highlight">This is highlighted text.</span>
+
+3. Using an ID (Not Recommended for Multiple Elements)
+#special-text {
+    color: red;
+}
+<p id="special-text">This is special text.</p>
+
+4. Using a Parent Selector (Inheritance)
+.container {
+    color: green;
+    font-size: 18px;
+}
+<div class="container">
+    <p>This text will be green.</p>
+    <span>This text will also be green.</span>
+</div>
+
+5. Using Attribute Selectors
+input[type="text"], input[type="email"] {
+    border: 2px solid blue;
+}
+
+6. Using Universal Selector (*)
+* {
+    margin: 0;
+    padding: 0;
+}
+7. Using CSS Grouping via Parent-Child Relationship
+.menu li, .footer li {
+    list-style: none;
+}
+8. Using CSS Variables
+:root {
+    --main-color: blue;
+}
+h1, h2, p {
+    color: var(--main-color);
+}
+
+9.What is the difference between visibility: hidden; and display: none;?
+1. visibility: hidden;
+=======================
+The element remains in the DOM and still takes up space on the page.
+
+It becomes invisible, but the layout around it is not affected.
+
+Other elements do not move to occupy its space.
+2. display: none;
+=================
+The element is completely removed from the layout.
+
+It does not take up any space.
+
+Other elements shift as if it was never there.
+
+10. How do you center a div in CSS?
+
+There are several ways to center a <div> in CSS, depending on whether you want to center it horizontally, vertically, or both.
+1. Using margin: auto; (For Horizontal Centering)
+2. Using flexbox (For Both Horizontal & Vertical Centering)
+3. Using grid (For Both Horizontal & Vertical Centering)
+4. Using position: absolute + transform (For Both)
+
+Intermediate CSS Questions :
+----------------------------
+
+11.What is the difference between flexbox and grid ?
+CSS Grid Layout
+===============
+CSS Grid Layout, is a two-dimensional grid-based layout system with rows and columns. It makes easier to design web pages without having to use floats and positioning. Like tables, grid layout allow us to align elements into columns and rows.
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <style>
+        .main{
+            display: grid; 
+            grid: auto auto / auto auto auto auto; 
+            grid-gap: 10px; 
+            background-color: green; 
+            padding: 10px; 
+        }
+        .gfg { 
+            background-color: rgb(255, 255, 255); 
+            text-align: center; 
+            padding: 25px 0; 
+            font-size: 30px; 
+        } 
+    </style>
+</head>
+  
+<body>
+    <h2 style="text-align: center;">
+          Welcome To GeeksForGeeks
+      </h2>
+    <div class="main">
+        <div class="gfg">Home</div>
+        <div class="gfg">Read</div>
+        <div class="gfg">Write</div>
+        <div class="gfg">About Us</div>
+        <div class="gfg">Contact Us</div>
+        <div class="gfg">Privacy Policy</div>
+    </div>
+</body>
+  
+</html>
+
+CSS Flexbox
+===========
+he CSS Flexbox offers one-dimensional layout. It is helpful in allocating and aligning the space among items in a container (made of grids). It works with all kinds of display devices and screen sizes. To get started you have to define a container element as a grid with display: flex;
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <style>
+        .main{
+            display: flex; 
+            grid: auto auto / auto auto auto auto; 
+            grid-gap: 10px; 
+            background-color: green; 
+            padding: 10px; 
+        }
+        .gfg { 
+            background-color: rgb(255, 255, 255); 
+            text-align: center; 
+            padding: 25px 0; 
+            font-size: 30px; 
+        } 
+    </style>
+</head>
+  
+<body>
+    <h2 style="text-align: center;">
+          Welcome To GeeksForGeeks
+      </h2>
+    <div class="main">
+        <div class="gfg">Home</div>
+        <div class="gfg">Read</div>
+        <div class="gfg">Write</div>
+        <div class="gfg">About Us</div>
+        <div class="gfg">Contact Us</div>
+        <div class="gfg">Privacy Policy</div>
+    </div>
+</body>
+  
+</html>
+
+12. How does the box model work in CSS ?
+The CSS Box Model defines how elements are sized, positioned, and rendered on a webpage. When a browser loads an HTML document, it creates a DOM tree and assigns a box to each element. This box calculates the element’s dimensions and position relative to its parent or the root <html> element, ensuring accurate layout and spacing.
+
+Box Model Component Layout
+==========================
+
+Content box: The area where your content is displayed; size it using properties like width and height.
+Padding box: The padding sits around the content as white space; size it using padding and related properties.
+Border box: The border box wraps the content and any padding; size it using border and related properties.
+Margin box: The margin is the outermost layer, wrapping the content, padding, and border as whitespace between this box and other elements; size it using margin and related properties.
+
+13. What is the difference between min-width, max-width, and width?
+Property	Definition	                                                      Behavior
+width	        Sets a fixed width for an element.	                The element will always be the specified width, unless overridden by other properties like min-width or max-width.
+min-width	Specifies the minimum width an element can have.	The element cannot be smaller than this value, but it can expand beyond it if needed.
+max-width	Specifies the maximum width an element can have.	The element cannot be larger than this value, but it can shrink if necessary.
+
+Example Code:
+============
+.box {
+    width: 200px; /* Fixed width */
+    min-width: 150px; /* Won't be smaller than 150px */
+    max-width: 300px; /* Won't be larger than 300px */
+    background-color: lightblue;
+}
+<div class="box">Resize me!</div>
+
+14. Explain media queries and their role in responsive design?
+Media queries are a feature in CSS that allow developers to apply different styles based on the screen size, resolution, or device type. They enable websites to adapt to different screen sizes, ensuring a responsive design that looks good on desktops, tablets, and mobile devices.
+
+Syntax of a Media Query
+=======================
+A media query consists of:
+
+The @media rule.
+
+A media type (e.g., screen).
+
+Conditions (e.g., max-width, min-width).
+
+CSS rules that apply when conditions are met.
+
+@media (max-width: 768px) {
+    body {
+        background-color: lightgray;
+    }
+}
+Role of Media Queries in Responsive Design
+==========================================
+i) Makes Websites Mobile-Friendly
+
+Adjusts layout and styling for different devices.
+
+Example: Hides unnecessary elements on small screens.
+
+ii) Improves User Experience
+
+Ensures readability and usability across devices.
+
+Example: Increases font size for mobile users.
+
+iii) Optimizes Performance
+
+Loads different stylesheets based on device type.
+
+Example: Disables animations on low-performance devices.
+
+iV) Enables Adaptive Layouts
+
+Changes grid structures or flexbox layouts dynamically.
+
+Example: A three-column layout becomes a single-column layout on mobile.
+
+15. What is the difference between nth-child() and nth-of-type() selectors?
+Selector	       Definition	                                Behavior
+:nth-child(n)	   Selects the nth child regardless of type.	  Counts all children, including different element types.
+:nth-of-type(n)	   Selects the nth child of a specific type.	  Counts only elements of the specified type.
+
+Example
+=======
+<div class="container">
+    <p>Paragraph 1</p>
+    <span>Span 1</span>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+    <span>Span 2</span>
+</div>
+
+Using :nth-child(n)
+-------------------
+.container p:nth-child(2) {
+    color: red;
+}
+//This selects the second child, which is <span>Span 1</span> (not a <p> tag).
+
+Using :nth-of-type(n)
+---------------------
+.container p:nth-of-type(2) {
+    color: blue;
+}
+// This selects the second <p> tag, which is <p>Paragraph 2</p>, ignoring other elements.
+
+16. How do you create a responsive layout without using media queries?
+While media queries are a popular method for responsive design, you can create a fluid and adaptive layout without them using the following techniques:
+1. Using Flexbox for Adaptive Layouts
+2. Using CSS Grid with auto-fit or auto-fill
+3. Using Relative Units (%, vh, vw, em, rem)
+4. Using clamp(), min(), and max() for Dynamic Sizing
+5. Using flex-grow and flex-basis for Flexible Layouts
+
+17. What is the difference between position: absolute; and position: fixed;?
+Absolute: Absolute Position is another CSS technique that adjusts an element’s position relative to its parent. If no parent element is present, the document body is used as the parent.   	  The syntax for absolute positioning is position: absolute;
+
+Fixed :  Fixed Position is a CSS technique that keeps an element in the same place even when the page is scrolled. The syntax for fixed positioning is position: fixed;. To position the          	 element, we use top, right, bottom, and left properties.
+
+18. How do you create an animation in CSS?
+In CSS, you can create animations using the @keyframes rule along with the animation property. Here’s a simple example of how to create an animation:
+
+Steps to Create an Animation in CSS:
+===================================
+
+Define Keyframes
+Use @keyframes to specify the animation’s behavior at different points.
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+Apply the Animation
+Use the animation property to apply the animation to an element.
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+  animation: slideIn 1s ease-in-out forwards;
+}
+
+Animation Property Breakdown
+----------------------------
+animation: [name] [duration] [timing-function] [delay] [iteration-count] [direction] [fill-mode];
+name: the name of the keyframes
+
+duration: how long it lasts (e.g., 2s)
+
+timing-function: how it progresses (e.g., ease, linear)
+
+delay: delay before it starts (e.g., 0.5s)
+
+iteration-count: how many times it repeats (infinite for looping)
+
+direction: normal, reverse, alternate
+
+fill-mode: e.g., forwards keeps the final state after animation ends
+
+19. What is the will-change property in CSS, and when should it be used?
+The will-change property is a performance optimization hint to the browser. It tells the browser which properties of an element are likely to change, so the browser can prepare ahead of time (e.g., promote the element to its own layer, cache it, etc.).
+
+Common Use Cases
+================
+Use will-change when you know in advance that a property of an element will change, like:
+
+transform — for animations like moving, rotating, scaling
+
+opacity — for fade effects
+
+scroll-position — for scroll-related animations
+
+Example :
+=========
+.button:hover {
+  will-change: transform;
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+20. What is the difference between overflow: hidden; and clip-path?
+overflow: hidden -> hides overflowing content, while clip is used to clip an element to a specified area, often combined with absolute positioning.
+Example:
+=======
+.box {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+
+clip-path ->Creates a custom shape (like circle, polygon, etc.) to clip the visible area of the element—even within its box.
+--------- 
+Example:
+========
+.circle {
+  width: 200px;
+  height: 200px;
+  background: coral;
+  clip-path: circle(50% at center);
+}
+
+Advanced CSS Questions:
+----------------------
+
+21. Explain the difference between @import and <link> in CSS?
+Feature	                 <link>	                                @import
+Where it's used 	In HTML <head>	                      Inside CSS or <style> tag
+Performance	        Loads faster (parallel loading)	      Loads slower (sequential)
+Browser support	         Excellent	                      Good, but can have issues in old IE
+Cascading Order	       Loads before page renders	      Can delay style rendering
+Best for	       Linking main CSS files	              Importing CSS within other CSS files
+
+
+<link> Tag
+----------
+Used in: HTML (inside <head>)
+Syntax:
+<link rel="stylesheet" href="styles.css">
+
+@import Rule
+------------
+Used in: Inside a CSS file or inside a <style> tag in HTML.
+@import url("styles.css");
+
+22. How do CSS variables (--variable) work?
+CSS variables let you store values (like colors, font sizes, spacing) in reusable custom properties that start with --.
+
+You use the var() function to retrieve the variable’s value.
+Example
+=======
+:root {
+  --main-color: #3498db;
+  --heading-font-size: 24px;
+  --padding: 20px;
+}
+
+body {
+  background-color: var(--main-color);
+  padding: var(--padding);
+}
+
+h1 {
+  font-size: var(--heading-font-size);
+  color: white;
+}
+
+23. What are the differences between grid-template-areas and grid-template-columns?
+1. Grid-template-columns: Defines the number of columns and their widths in the grid.
+Example
+=======
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr 2fr;
+}
+This creates a grid with 3 columns:
+First columns:200px wide
+Second columns:1 fraction of remaining space
+Third column:2 fractions of remaining space
+
+2. grid-template-areas
+Define a visual layout using named areas for easier placement of items
+Example
+=======
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto;
+  grid-template-areas: 
+    "header header"
+    "sidebar main";
+}
+24. How do you optimize CSS for performance and faster loading times?
+1.Minify Your CSS:
+=================
+Removes extra spaces, comments, and line breaks.
+Use tools like:
+CSS Minifier
+
+2. Combine CSS Files
+Reduce the number of HTTP requests by combining multiple CSS files into one.
+<!-- ❌ Instead of this -->
+<link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="footer.css">
+
+<!-- ✅ Do this -->
+<link rel="stylesheet" href="styles.min.css">
+
+3. Use Critical CSS
+Load only the CSS needed for above-the-fold content first.
+Inline critical CSS in <head>, defer the rest.
+<style>
+  /* Critical styles */
+</style>
+<link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+
+4. Remove Unused CSS
+Delete unused classes and styles to shrink file size.
+
+✅ Tools:
+
+PurgeCSS
+
+UnCSS
+
+Chrome DevTools → Coverage Tab
+
+5. Use Shorthand Properties
+Write shorter, more efficient CSS.
+/* ❌ Long */
+margin-top: 10px;
+margin-right: 10px;
+margin-bottom: 10px;
+margin-left: 10px;
+
+/* ✅ Short */
+margin: 10px;
+
+25. What is the difference between contain and cover in background-size?
+Background-size: cover
+What it does:
+-------------
+Scales the background image to completely cover the container, even if it has to crop part of the image.
+
+Use case:
+---------
+Perfect for full-width background banners or hero sections where you want the entire area filled.
+
+Pros: Always fills the element
+
+Cons: Might crop part of the image
+Example
+=======
+.hero {
+  background-image: url("bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+background-size: contain
+What it does:
+============
+Scales the image to fit completely inside the container without cropping. The entire image will always be visible, but there may be empty space (like letterboxing).
+
+Use case:
+========
+When you want the whole image to be seen without any part cut off.
+
+Pros: Image is never cropped
+
+Cons: Might not fill the entire container (leaves space)
+Example:
+=======
+.logo-box {
+  background-image: url("logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+How do you create a sticky footer with CSS?
+A sticky footer pattern is one where the footer of your page "sticks" to the bottom of the viewport in cases where the content is shorter than the viewport height. We'll look at a couple of techniques for creating one in this recipe.
+
+Reqiurements:
+============
+The sticky footer pattern needs to meet the following requirements:
+
+Footer sticks to the bottom of the viewport when content is short.
+If the content of the page extends past the viewport bottom, the footer gets pushed down, always sitting below the content as normal.
+------------CSS Code------------------
+* {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  font: 1.2em sans-serif;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.page-header,
+.page-footer {
+  background-color: rgb(75 70 74);
+  color: #fff;
+  padding: 20px;
+}
+
+.page-body {
+  padding: 20px;
+}
+
+.page-body p {
+  border: 1px solid grey;
+}
+-----------HTML------------------
+<div class="wrapper">
+  <header class="page-header">This is the header</header>
+  <main class="page-body">
+    <p contenteditable>
+      The footer sticks to the bottom even though this paragraph is short. Add
+      content to this editable area to see the footer push down when needed to
+      fit the content.
+    </p>
+  </main>
+  <footer class="page-footer">Sticky footer</footer>
+</div>
+
+27. What are CSS sprites, and why are they useful?
+The CSS Sprites are a collection or set of image files combined into a single file that an HTML document can access. These images are then called into use within the HTML code to be shown on the website. A web page working with many images can take a huge amount of time to load and generate multiple server requests. The primary benefit of utilizing image sprite is to reduce the number of HTTP requests that make the website’s heap time quicker. The images additionally load quicker making switching easy from one image then onto the next.
+
+Example of CSS Sprites helps in Web Development:
+================================================
+Usually while designing web pages, the images are utilized as individual documents. Thus, when a client opens a webpage, the program needs to make an HTTP request for every one of these documents, download them independently and display them. This prompts higher page load times as a specific web page can have countless more modest pictures like buttons, symbols, logos. CSS Image sprites help web developers to join and mix these frequently used small images into one big image. The browser then has to work with only one file which is then displayed to required sections.
+
+28. Explain content-visibility: auto; and how it improves performance.
+content-visibility: auto;
+========================
+tells the browser to skip rendering elements that are not currently visible in the viewport. It’s like having a virtual scroll implementation, but without the complexity of managing scroll positions or item heights manually.
+Example:
+=======
+.long-list-item {
+  content-visibility: auto;
+  contain-intrinsic-size: auto; /* Let the browser figure out the size; measured size is then stored even when element is not rendered  */
+  /* Or specify a size: contain-intrinsic-size: 0 50px; */
+}
+
+how it improves performance
+===========================
+
+Benefit   	                        Explanation
+Faster Initial Load	       Skips calculating layout, style, and painting for hidden/off-screen elements.
+Reduced Memory Use	       Doesn't load what the user doesn't see yet.
+Great for Long Pages	       Perfect for blogs, dashboards, infinite scroll, etc.
+
+29. What are CSS Houdini and its benefits?
+Houdini is a set of low-level APIs that exposes parts of the CSS engine, giving developers the power to extend CSS by hooking into the styling and layout process of a browser's rendering engine. Houdini is a group of APIs that give developers direct access to the CSS Object Model (CSSOM), enabling developers to write code the browser can parse as CSS, thereby creating new CSS features without waiting for them to be implemented natively in browsers.
+Advantages of Houdini :
+======================
+Houdini enables faster parse times than using JavaScript HTMLElement.style for style changes. Browsers parse the CSSOM — including layout, paint, and composite processes — before applying any style updates found in scripts. In addition, layout, paint, and composite processes are repeated for JavaScript style updates. Houdini code doesn't wait for that first rendering cycle to be complete. Rather, it is included in that first cycle — creating renderable, understandable styles. Houdini provides an object-based API for working with CSS values in JavaScript.
+
+30. How does clip-path work, and when should it be used?
+clip-path:The clip-path CSS property creates a clipping region that sets what part of an element should be shown. Parts that are inside the region are shown, while those outside are hidden.
+CSS demo:
+clip-path: circle(40%);
+clip-path: ellipse(130px 140px at 10% 20%);
+clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
